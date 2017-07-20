@@ -12,8 +12,11 @@ except ImportError:
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-VERSION=open('commit-version').read().strip()
-print("Preparing version {0}\n".format(VERSION or "NOTFOUND"), file=sys.stderr)
+try:
+    VERSION=open('commit-version').read().strip() or 'NOTFOUND'
+except IOError:
+    VERSION = 'NOTFOUND'
+print("Preparing version {0}\n".format(VERSION), file=sys.stderr)
 
 
 try:
